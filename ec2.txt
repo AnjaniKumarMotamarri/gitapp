@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "Temporary Working Stack"
+Description: "Temporary Working Stack-1"
 Resources:
   Ec2Instance:
     Type: "AWS::EC2::Instance"
