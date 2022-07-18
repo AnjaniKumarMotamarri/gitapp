@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Temporary Working Stack"
+Resources:
+  Ec2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId:
+        Ref: "amazon2"
+      InstanceType: "t2.micro"
+      BlockDeviceMappings:
+        - DeviceName: "/dev/xvda"
+          Ebs:
+            VolumeSize: 32
+            DeleteOnTermination: true
+            VolumeType: "gp3"
+      SubnetId: ""
+      LaunchTemplate:
+        LaunchTemplateId:
+          Ref: "LaunchTemplate"
+        Version: "1"
+  LaunchTemplate:
+    Type: "AWS::EC2::LaunchTemplate"
+    Properties:
+      LaunchTemplateData:
+        MetadataOptions:
+          HttpTokens: "required"
+Parameters:
+  amazon2:
+    Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
+    Default: "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+Metadata: {}
+Conditions: {}
